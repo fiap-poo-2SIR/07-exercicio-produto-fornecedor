@@ -39,10 +39,19 @@ public class Util {
                         pesquisarProduto();
                         break;
                     case 3:
-                        pesquisarFornecedor();
+                        pesquisar();
                         break;
                 }
             }
+        }
+    }
+
+    private void pesquisar() {
+        Fornecedor fornecedor = pesquisarFornecedor();
+        if(fornecedor != null) {
+            String aux = "Fornecedor: " + fornecedor.getNome() + "\n";
+            aux += "CNPJ: " + fornecedor.getCnpj();
+            showMessageDialog(null, aux);
         }
     }
 
@@ -56,7 +65,7 @@ public class Util {
             fornecedor = cadastrarFornecedor();
         }
 
-        nome = showInputDialog("Nome");
+        nome = showInputDialog("Produto");
         valor = parseDouble(showInputDialog("Valor unitário"));
         qtdEstoque = parseInt(showInputDialog("Quantidade em estoque"));
         produto[indexProduto] = new Produto(nome, valor, qtdEstoque, fornecedor);
@@ -80,7 +89,7 @@ public class Util {
         long cnpj;
         Fornecedor f = null;
         if (indexFornecedor < fornecedor.length) {
-            nome = showInputDialog("Nome");
+            nome = showInputDialog("Fornecedor");
             cnpj = parseLong(showInputDialog("CNPJ"));
             f = new Fornecedor(nome, cnpj);
             fornecedor[indexFornecedor] = f;
